@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\PedidoItem;
-class PedidoItemSeeder extends Seeder
+use App\Models\Cliente;
+
+class ClienteSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +15,6 @@ class PedidoItemSeeder extends Seeder
      */
     public function run()
     {
-        PedidoItem::factory(20)->create();
+        Cliente::factory(50)->create();
     }
 }

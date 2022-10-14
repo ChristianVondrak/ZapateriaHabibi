@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\User;
+use App\Models\Cliente;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Pedido>
@@ -17,10 +17,10 @@ class PedidoFactory extends Factory
      */
     public function definition()
     {
-        $users = User::pluck('id')->toArray();
+        $users = Cliente::pluck('id')->toArray();
         return [
             'description'=> $this->faker->text(20),
-            'user_id' => $this->faker->randomElement($users),
+            'cliente_id' => $this->faker->randomElement($users),
         ];
     }
 }

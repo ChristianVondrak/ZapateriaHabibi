@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pedido;
-use App\Http\Requests\StorePedidoRequest;
-use App\Http\Requests\UpdatePedidoRequest;
+use App\Models\Cliente;
+use App\Http\Requests\StoreClienteRequest;
+use App\Http\Requests\UpdateClienteRequest;
 
-class PedidoController extends Controller
+class ClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        $pedidos = Pedido::paginate();
-        return view('pedidos.index', compact('pedidos'));
+        //
     }
 
     /**
@@ -32,10 +31,10 @@ class PedidoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePedidoRequest  $request
+     * @param  \App\Http\Requests\StoreClienteRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePedidoRequest $request)
+    public function store(StoreClienteRequest $request)
     {
         //
     }
@@ -43,10 +42,10 @@ class PedidoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Pedido  $pedido
+     * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function show(Pedido $pedido)
+    public function show(Cliente $cliente)
     {
         //
     }
@@ -54,10 +53,10 @@ class PedidoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Pedido  $pedido
+     * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pedido $pedido)
+    public function edit(Cliente $cliente)
     {
         //
     }
@@ -65,11 +64,11 @@ class PedidoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePedidoRequest  $request
-     * @param  \App\Models\Pedido  $pedido
+     * @param  \App\Http\Requests\UpdateClienteRequest  $request
+     * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePedidoRequest $request, Pedido $pedido)
+    public function update(UpdateClienteRequest $request, Cliente $cliente)
     {
         //
     }
@@ -77,10 +76,10 @@ class PedidoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Pedido  $pedido
+     * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pedido $pedido)
+    public function destroy(Cliente $cliente)
     {
         //
     }
