@@ -6,15 +6,16 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                        <img src="{{ asset('/img/logo.png') }}" width="60" alt="">
+                        
                     </a>
                 </div>
-
+                
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <!-- <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
-                    </x-nav-link>
+                    </x-nav-link> -->
                     <x-nav-link :href="route('pedidos.index')" :active="request()->routeIs('pedidos.index')">
                         {{ __('Pedidos') }}
                     </x-nav-link>
@@ -44,7 +45,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Cerrar sesion') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>

@@ -10,4 +10,10 @@ class Pedido extends Model
     use HasFactory;
 
     protected $fillable = ['description'];
+
+
+     //Relacion Muchos a uno
+     public function cliente(){
+       return $this->belongsTo(Cliente::class);
+    }
 }

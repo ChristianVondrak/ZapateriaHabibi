@@ -15,4 +15,9 @@ class Cliente extends Model
         'correo',
         'cedula'
     ];
+
+    //Relacion uno a muchos
+    public function pedidos(){
+         return $this->hasMany(Pedido::class);
+    }
 }
