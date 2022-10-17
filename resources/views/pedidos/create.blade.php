@@ -23,9 +23,15 @@
                         <div class="mt-4">
                             <x-input-label for="clients" :value="__('Cliente')" />
                             <select id="clients" name="clients" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray dark:focus:ring-blue-500 dark:focus:border-blue-500 form-control">
+                                @if($clientes!=null)
                                 @foreach ($clientes as $cliente)
                                 <option value="{{$cliente->id}}">{{ $cliente->nombre . " CI: V-" . $cliente->cedula}}</option>
                                 @endforeach
+                                @endif
+
+                                @if($cliente!=null)
+                                <option value="{{$cliente->id}}">{{ $cliente->nombre . " CI: V-" . $cliente->cedula}}</option>
+                                @endif
                             </select>
                         </div>
 
@@ -33,8 +39,8 @@
                         <x-primary-button class="mt-9">
                             {{ __('Registrar Pedido') }}
                         </x-primary-button>
-                
-                </form>
+
+                    </form>
                 </div>
             </div>
         </div>

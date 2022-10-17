@@ -26,12 +26,12 @@ Route::get('/dashboard', function () {
 Route::resource('/pedidos',PedidoController::class)->middleware(['auth', 'verified']);
 require __DIR__.'/auth.php';
 
-Route::get('pedidos/create', [PedidoController::class, 'create'])->middleware(['auth', 'verified'])
-                ->name('create_pedido');
+Route::get('pedidos/create/{id?}', [PedidoController::class, 'create'])->middleware(['auth', 'verified'])
+                ->name('create_pedido')->middleware(['auth', 'verified']);
 
 Route::post('pedidos/create', [PedidoController::class, 'store'])->middleware(['auth', 'verified']);
 
-Route::resource('/clientes',ClienteController::class);
+Route::resource('/clientes',ClienteController::class)->middleware(['auth', 'verified']);
 
 Route::get('clientes/create', [ClienteController::class, 'create'])->middleware(['auth', 'verified'])
                 ->name('create_cliente');
