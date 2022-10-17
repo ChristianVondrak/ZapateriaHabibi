@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('pedidos.index') }}">
                         <img src="{{ asset('/img/logo.png') }}" width="60" alt="">
                         
                     </a>
@@ -18,6 +18,9 @@
                     </x-nav-link> -->
                     <x-nav-link :href="route('pedidos.index')" :active="request()->routeIs('pedidos.index')">
                         {{ __('Pedidos') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('clientes.index')" :active="request()->routeIs('clientes.index')">
+                        {{ __('Clientes') }}
                     </x-nav-link>
                 </div>
             </div>

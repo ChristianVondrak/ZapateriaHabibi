@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PedidoController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,9 @@ Route::get('/dashboard', function () {
 Route::resource('/pedidos',PedidoController::class)->middleware(['auth', 'verified']);
 require __DIR__.'/auth.php';
 
-Route::get('pedidos/create', [PedidoController::class, 'create'])
+Route::get('pedidos/create', [PedidoController::class, 'create'])->middleware(['auth', 'verified'])
                 ->name('create_pedido');
 
-Route::post('pedidos/create', [PedidoController::class, 'store']);
+Route::post('pedidos/create', [PedidoController::class, 'store'])->middleware(['auth', 'verified']);
+
+Route::resource('/clientes',ClienteController::class);
