@@ -32,3 +32,8 @@ Route::get('pedidos/create', [PedidoController::class, 'create'])->middleware(['
 Route::post('pedidos/create', [PedidoController::class, 'store'])->middleware(['auth', 'verified']);
 
 Route::resource('/clientes',ClienteController::class);
+
+Route::get('clientes/create', [ClienteController::class, 'create'])->middleware(['auth', 'verified'])
+                ->name('create_cliente');
+
+Route::post('clientes/create', [ClienteController::class, 'store'])->middleware(['auth', 'verified']);

@@ -1,8 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Clientes') }}
-        </h2>
+        <div class="flex justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Clientes') }}
+            </h2>
+            <a href="{{ route('create_cliente') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4 leading-tight">
+                Crear cliente
+            </a>
+        </div>
     </x-slot>
 
     <div class="py-12">
@@ -40,10 +45,10 @@
                                             @foreach ($clientes as $cliente)
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    
-                                                        
-                                                            {{ $cliente->nombre }}
-                                                       
+
+
+                                                    {{ $cliente->nombre }}
+
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm text-gray-900">{{ $cliente->apellido }}</div>
