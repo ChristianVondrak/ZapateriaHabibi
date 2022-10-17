@@ -22,5 +22,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('pedidos',PedidoController::class)->middleware(['auth', 'verified']);
+Route::resource('/pedidos',PedidoController::class)->middleware(['auth', 'verified']);
 require __DIR__.'/auth.php';
+
+Route::get('pedidos/create', [PedidoController::class, 'create'])
+                ->name('create_pedido');
+
+Route::post('pedidos/create', [PedidoController::class, 'store']);

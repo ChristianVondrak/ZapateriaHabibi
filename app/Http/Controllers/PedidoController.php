@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
+use App\Models\Cliente;
 use App\Http\Requests\StorePedidoRequest;
 use App\Http\Requests\UpdatePedidoRequest;
+use App\Providers\RouteServiceProvider;
 
 class PedidoController extends Controller
 {
@@ -26,7 +28,8 @@ class PedidoController extends Controller
      */
     public function create()
     {
-        //
+        $clientes = Cliente::all();
+        return view('pedidos.create', compact('clientes'));
     }
 
     /**
@@ -37,7 +40,19 @@ class PedidoController extends Controller
      */
     public function store(StorePedidoRequest $request)
     {
-        //
+        $request->validate([
+            'desc' => ['required', 'string', 'max:255']
+        ]);
+
+        $pedido = new Pedido;
+        $pedido->description = $request->desc;
+        $pedido->status = 'Pendiente';
+        $pedido->cliente_id= $request->clients;
+        $pedido->save();
+
+
+
+        return redirect(RouteServiceProvider::HOME);
     }
 
     /**
