@@ -47,7 +47,7 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
 
 
-                                                    {{ $cliente->nombre }}
+                                                <div class="text-sm text-gray-900"> {{ $cliente->nombre }}</div>
 
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -61,7 +61,7 @@
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 
-                                                    {{ $cliente->correo }}
+                                                    {{ $cliente->email }}
 
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -75,7 +75,7 @@
                                     </table>
                                 </div>
                                 <div class="mt-4">
-                                    {{ $clientes->links() }}
+                                    {{ $clientes->onEachSide(1)->links() }}
                                 </div>
                             </div>
                         </div>

@@ -42,14 +42,14 @@ class ClienteController extends Controller
             'nombre' => ['required', 'string', 'max:255'],
             'apellido' => ['required', 'string', 'max:255'],
             'cedula' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:clientes'],
         ]);
 
         $cliente = new Cliente;
         $cliente->nombre = $request->nombre;
         $cliente->apellido = $request->apellido;
         $cliente->cedula= $request->cedula;
-        $cliente->correo= $request->email;
+        $cliente->email= $request->email;
         $cliente->save();
 
         return redirect(RouteServiceProvider::CLIENTES);
