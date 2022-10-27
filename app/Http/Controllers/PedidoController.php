@@ -7,6 +7,8 @@ use App\Models\Cliente;
 use App\Http\Requests\StorePedidoRequest;
 use App\Http\Requests\UpdatePedidoRequest;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PedidoController extends Controller
 {
@@ -15,10 +17,17 @@ class PedidoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $pedidos = Pedido::orderBy('updated_at','DESC')->paginate(10);
-        return view('pedidos.index', compact('pedidos'));
+        if($request){
+            $search=$request->get('search');
+            $pedidos=Pedido::where('id','=',$search)
+                        ->orWhere('description','LIKE','%'.$search.'%')
+                        ->orderBy('updated_at','DESC')
+                        ->paginate(10);                   
+        }
+        return view('pedidos.index', compact('pedidos','search'));
     }
 
     /**
