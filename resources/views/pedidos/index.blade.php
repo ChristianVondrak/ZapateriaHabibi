@@ -74,9 +74,9 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                           @if ( $pedido->status ==='Terminado')
                           <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                            @elseif( $pedido->status ==='Pendiente')
+                            @elseif( $pedido->status ==='En proceso')
                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                              @elseif( $pedido->status ==='Recogido')
+                              @elseif( $pedido->status ==='Retirado')
                               <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-200 text-red-800">
                                 @endif
                                 {{ $pedido->status }}

@@ -52,7 +52,7 @@ class PedidoController extends Controller
 
         $pedido = new Pedido;
         $pedido->description = $request->desc;
-        $pedido->status = 'Pendiente';
+        $pedido->status = 'En proceso';
         $pedido->cliente_id= $request->clients;
         $pedido->save();
 

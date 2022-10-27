@@ -6,6 +6,8 @@ use App\Models\Cliente;
 use App\Http\Requests\StoreClienteRequest;
 use App\Http\Requests\UpdateClienteRequest;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClienteController extends Controller
 {
@@ -14,10 +16,16 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $clientes = Cliente::orderBy('updated_at','DESC')->paginate(10);
-        return view('clientes.index', compact('clientes'));
+        if($request){
+            $search=$request->get('search');
+            $clientes=DB::table('clientes')->where('cedula','LIKE',$search.'%')
+                        ->orWhere('nombre','LIKE','%'.$search.'%')
+                        ->paginate(10);                   
+        }
+        return view('clientes.index', compact('clientes','search'));
     }
 
     /**
