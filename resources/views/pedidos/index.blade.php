@@ -1,3 +1,8 @@
+
+@push('css')
+    <link rel="stylesheet" href="{{ asset('css/pedidos.css') }}">
+@endpush
+
 <x-app-layout>
   <x-slot name="header">
     <div class="flex justify-between items-center">
@@ -5,7 +10,7 @@
         {{ __('Pedidos') }}
       </h2>
       <div>
-                <form action="{{route('pedidos.index')}}" method="get">
+                <form action="{{route('pedidos.index')}}" method="get" autocomplete="off">
                     <div class="relative">
                         <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                             <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -28,7 +33,9 @@
 
   <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    @include('flash-message')
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+      
         <div class="p-6 bg-white border-b border-gray-200">
 
 
@@ -64,11 +71,11 @@
                       @foreach ($pedidos as $pedido)
                       <tr>
                         <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="flex items-center">
-                            <div class="flex-shrink-0 h-10 w-10">
+                          
+                            <div class="text-m text-gray-900">
                               {{ $pedido->description }}
                             </div>
-                          </div>
+                        
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                           <div class="text-sm text-gray-900">{{ $pedido->id }}</div>
@@ -92,7 +99,9 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                           <div class="ml-4">
                             <div class="text-sm font-medium text-gray-900">
-                              {{ $pedido->created_at->formatLocalized('%A %d %B %Y') }}
+                              <!-- {{ $pedido->created_at->formatLocalized('%A %d %B %Y') }} -->
+                              <!-- {{Carbon\Carbon::now()->formatLocalized('%A %d %B %Y')}} -->
+                              {{Carbon\Carbon::parse($pedido->created_at)->translatedFormat('d F Y')}}
                             </div>
                             <div class="text-sm text-gray-500">
                               {{ $pedido->created_at->diffForHumans() }}
@@ -101,7 +110,9 @@
 
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                          <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                          <a href="{{ route('edit_pedido',$pedido->id)}}" class="text-indigo-600 hover:text-indigo-900">Editar</a>
+                          <a href="{{ route('delete_pedido',$pedido->id)}}" class="text-indigo-600 hover:text-indigo-900 mx-2">Eliminar</a>
+                          
                         </td>
                       </tr>
                       @endforeach
@@ -122,4 +133,13 @@
       </div>
     </div>
   </div>
+
+  <script>
+    var alert_del = document.querySelectorAll('.alert-del');
+  alert_del.forEach((x) =>
+    x.addEventListener('click', function () {
+      x.parentElement.classList.add('hidden');
+    })
+  );
+  </script>
 </x-app-layout>

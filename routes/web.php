@@ -37,3 +37,12 @@ Route::get('clientes/create', [ClienteController::class, 'create'])->middleware(
                 ->name('create_cliente');
 
 Route::post('clientes/create', [ClienteController::class, 'store'])->middleware(['auth', 'verified']);
+
+Route::get('pedidos/edit/{id}', [PedidoController::class, 'edit'])->middleware(['auth', 'verified'])
+                ->name('edit_pedido')->middleware(['auth', 'verified']);
+
+Route::post('pedidos/update/{id}', [PedidoController::class, 'update'])->name('update_pedido')->middleware(['auth', 'verified']);
+
+Route::get('pedidos/delete/{id}', [PedidoController::class, 'destroy'])->middleware(['auth', 'verified'])
+                ->name('delete_pedido')->middleware(['auth', 'verified']);
+

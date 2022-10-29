@@ -67,7 +67,7 @@ class PedidoController extends Controller
 
 
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOME)->with('success','Pedido creado correctamente');
     }
 
     /**
@@ -87,9 +87,10 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pedido $pedido)
+    public function edit($pedido_id)
     {
-        //
+        $pedido = Pedido::find($pedido_id);
+        return view('pedidos.edit', compact('pedido'));
     }
 
     /**
@@ -99,9 +100,13 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePedidoRequest $request, Pedido $pedido)
+    public function update(UpdatePedidoRequest $request,$pedido_id)
     {
-        //
+        $pedido = Pedido::where('id',$pedido_id)->update([
+            'description' => $request->desc
+        ]);
+
+        return redirect('/pedidos')->with('success','Pedido actualizado correctamente');
     }
 
     /**
@@ -110,8 +115,9 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pedido $pedido)
+    public function destroy($pedido_id)
     {
-        //
+        $pedido=Pedido::find($pedido_id)->delete();
+        return redirect(RouteServiceProvider::HOME)->with('success','Pedido eliminado correctamente');
     }
 }

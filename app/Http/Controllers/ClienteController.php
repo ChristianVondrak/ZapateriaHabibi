@@ -23,6 +23,7 @@ class ClienteController extends Controller
             $search=$request->get('search');
             $clientes=DB::table('clientes')->where('cedula','LIKE',$search.'%')
                         ->orWhere('nombre','LIKE','%'.$search.'%')
+                        ->orderBy('updated_at','DESC')
                         ->paginate(10);                   
         }
         return view('clientes.index', compact('clientes','search'));
