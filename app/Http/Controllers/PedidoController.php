@@ -56,13 +56,15 @@ class PedidoController extends Controller
     public function store(StorePedidoRequest $request)
     {
         $request->validate([
-            'desc' => ['required', 'string', 'max:255']
+            'desc' => ['required', 'string', 'max:255'],
+            'monto' => ['required','numeric','between:0,1000.99']
         ]);
 
         $pedido = new Pedido;
         $pedido->description = $request->desc;
         $pedido->status = 'En proceso';
         $pedido->cliente_id= $request->clients;
+        $pedido->monto=$request->monto;
         $pedido->save();
 
 
@@ -103,7 +105,9 @@ class PedidoController extends Controller
     public function update(UpdatePedidoRequest $request,$pedido_id)
     {
         $pedido = Pedido::where('id',$pedido_id)->update([
-            'description' => $request->desc
+            'description' => $request->desc,
+            'status'=>$request->status,
+            'monto'=>$request->monto
         ]);
 
         return redirect('/pedidos')->with('success','Pedido actualizado correctamente');

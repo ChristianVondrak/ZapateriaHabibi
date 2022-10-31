@@ -20,6 +20,15 @@
 
                             <x-input-error :messages="$errors->get('desc')" class="mt-2" />
                         </div>
+                         <!-- Price -->
+                         <div class="mb-2">
+                            <x-input-label for="monto" :value="__('Monto')" />
+
+                            <x-text-input id="monto" class="block mt-1 mb-3 w-full" type="number" name="monto" :value="old('monto')" pattern="[0-9]+([,\.][0-9]+)?" step="0.01" required autofocus />
+
+                            <x-input-error :messages="$errors->get('monto')" class="mt-2" />
+                        </div>
+
                         <div class="mt-4">
                             <x-input-label for="clients" :value="__('Cliente')" />
                             <select id="clients" name="clients" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray dark:focus:ring-blue-500 dark:focus:border-blue-500 form-control">

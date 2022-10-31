@@ -20,6 +20,41 @@
 
                             <x-input-error :messages="$errors->get('desc')" class="mt-2" />
                         </div>
+
+                         <!-- Price -->
+                         <div class="mb-2">
+                            <x-input-label for="monto" :value="__('Monto')" />
+
+                            <x-text-input id="monto" class="block mt-1 mb-3 w-full" type="number" name="monto" :value="$pedido->monto" step="0.01" required autofocus />
+
+                            <x-input-error :messages="$errors->get('monto')" class="mt-2" />
+                        </div>
+
+                        <!-- Status -->
+                        <div class="mt-4">
+                            <x-input-label for="status" :value="__('Estado')" />
+                            <select id="status" name="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray dark:focus:ring-blue-500 dark:focus:border-blue-500 form-control">
+                                @if($pedido->status=='En proceso')
+                                <option value="En proceso">{{$pedido->status}}</option>
+                                <option value="Reparado">Reparado</option>
+                                <option value="Retirado">Retirado</option>
+                                @endif
+                                @if($pedido->status=='Reparado')
+                                <option value="Reparado">{{$pedido->status}}</option>
+                                <option value="En proceso">En proceso</option>
+                                <option value="Retirado">Retirado</option>
+                                @endif
+                                @if($pedido->status=='Retirado')
+                                <option value="Retirado">{{$pedido->status}}</option>
+                                <option value="En proceso">En proceso</option>
+                                <option value="Reparado">Reparado</option>
+                                @else
+                                <option value="Retirado">Retirado</option>
+                                <option value="En proceso">En proceso</option>
+                                <option value="Reparado">Reparado</option>
+                                @endif
+                            </select>
+                        </div>
                         
 
                         <x-primary-button class="mt-9">
