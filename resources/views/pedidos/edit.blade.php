@@ -38,13 +38,11 @@
                                 <option value="En proceso">{{$pedido->status}}</option>
                                 <option value="Reparado">Reparado</option>
                                 <option value="Retirado">Retirado</option>
-                                @endif
-                                @if($pedido->status=='Reparado')
+                                @elseif($pedido->status=='Reparado')
                                 <option value="Reparado">{{$pedido->status}}</option>
                                 <option value="En proceso">En proceso</option>
                                 <option value="Retirado">Retirado</option>
-                                @endif
-                                @if($pedido->status=='Retirado')
+                                @elseif($pedido->status=='Retirado')
                                 <option value="Retirado">{{$pedido->status}}</option>
                                 <option value="En proceso">En proceso</option>
                                 <option value="Reparado">Reparado</option>
