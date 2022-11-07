@@ -50,15 +50,16 @@ class ClienteController extends Controller
         $request->validate([
             'nombre' => ['required', 'string', 'max:255'],
             'apellido' => ['required', 'string', 'max:255'],
-            'cedula' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:clientes'],
+            'cedula' => ['required', 'string', 'max:255']      
         ]);
 
         $cliente = new Cliente;
         $cliente->nombre = $request->nombre;
         $cliente->apellido = $request->apellido;
         $cliente->cedula= $request->cedula;
+        if(isset($request->email)){
         $cliente->email= $request->email;
+        }
         $cliente->save();
 
         return redirect(RouteServiceProvider::CLIENTES);
@@ -104,8 +105,9 @@ class ClienteController extends Controller
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cliente $cliente)
+    public function destroy($cliente_id)
     {
-        //
+        $pedido=Cliente::find($cliente_id)->delete();
+        return redirect(RouteServiceProvider::CLIENTES)->with('success','Cliente eliminado correctamente');
     }
 }
